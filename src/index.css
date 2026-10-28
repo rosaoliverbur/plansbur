@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #0c0f17;
+    color: #f1f5f9;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Marker Styles for Burr Plans Map */
+.bp-marker {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bp-marker:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+  z-index: 9999 !important;
+}
+
+.bp-dot {
+  width: 38px;
+  height: 38px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 2px solid #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4), 0 2px 5px rgba(0,0,0,0.5);
+  transition: all 0.2s ease;
+}
+
+.bp-marker.is-selected .bp-dot {
+  border-color: #f97316;
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  transform: scale(1.2);
+  box-shadow: 0 0 24px rgba(249, 115, 22, 0.8), 0 4px 10px rgba(0,0,0,0.6);
+}
+
+.bp-marker.is-live .bp-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 2px solid #22c55e;
+  animation: bp-pulse 2s infinite ease-out;
+}
+
+.bp-marker.is-past .bp-dot {
+  border-color: #64748b;
+  opacity: 0.75;
+  filter: grayscale(40%);
+}
+
+.bp-count {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #f97316;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #0c0f17;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.bp-me {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #06b6d4;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.35);
+  animation: bp-me-pulse 2s infinite;
+}
+
+.bp-pick {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px 9999px 9999px 0;
+  transform: rotate(-45deg);
+  background: #f97316;
+  border: 2px solid white;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.6);
+}
+
+@keyframes bp-pulse {
+  0% { transform: scale(0.9); opacity: 0.9; }
+  70% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes bp-me-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* Custom Scrollbar for modern touch / scroll view */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Leaflet container dark map styling */
+.leaflet-container {
+  font-family: inherit;
+  background-color: #0b1120 !important;
+}
+.leaflet-tile-pane {
+  filter: brightness(0.9) contrast(1.05);
+}

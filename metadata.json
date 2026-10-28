@@ -1,0 +1,6 @@
+{
+  "name": "Burr Plans - Planes para jóvenes en Burriana",
+  "description": "Descubre y organiza planes en Burriana con mapa interactivo, asistentes por institutos, galería de fotos, chat de grupo y recordatorios con valoraciones.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

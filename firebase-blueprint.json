@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile in Burr Plans",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "username": { "type": "string", "maxLength": 50 },
+        "fullName": { "type": "string", "maxLength": 100 },
+        "avatar": { "type": "string", "maxLength": 1000 },
+        "school": { "type": "string", "maxLength": 100 },
+        "bio": { "type": "string", "maxLength": 500 },
+        "interests": { "type": "array", "description": "Youth interests list" },
+        "followersCount": { "type": "number" },
+        "followingCount": { "type": "number" }
+      },
+      "required": ["id", "username", "fullName", "school"]
+    },
+    "Plan": {
+      "title": "Plan",
+      "description": "Activity plan in Burriana",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 150 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "category": { "type": "string", "maxLength": 50 },
+        "place_name": { "type": "string", "maxLength": 150 },
+        "place_address": { "type": "string", "maxLength": 200 },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "date": { "type": "string", "maxLength": 50 },
+        "time": { "type": "string", "maxLength": 20 },
+        "status": { "type": "string", "maxLength": 30 },
+        "creatorId": { "type": "string", "maxLength": 128 },
+        "creatorName": { "type": "string", "maxLength": 100 },
+        "creatorAvatar": { "type": "string", "maxLength": 1000 },
+        "creatorSchool": { "type": "string", "maxLength": 100 },
+        "coverPhoto": { "type": "string", "maxLength": 1000 },
+        "photos": { "type": "array" },
+        "attendees": { "type": "array" },
+        "chatMessages": { "type": "array" },
+        "ratings": { "type": "array" }
+      },
+      "required": ["title", "category", "place_name", "lat", "lng", "creatorId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "UserProfile" },
+      "description": "User profile collection"
+    },
+    "/plans/{planId}": {
+      "schema": { "$ref": "Plan" },
+      "description": "Youth plans collection in Burriana"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Connection validation test document
+    match /test/{docId} {
+      allow read: if true;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Users Collection
+    match /users/{userId} {
+      allow read: if true;
+      allow create, update: if isSignedIn() && request.auth.uid == userId;
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Plans Collection - accessible for all youth in Burriana to share plans, chat, photos and ratings
+    match /plans/{planId} {
+      allow read: if true;
+      allow create, update: if true;
+      allow delete: if isSignedIn();
+    }
+  }
+}
